@@ -62,7 +62,7 @@ ul li {
 .page {
   margin: 0 auto;
   max-width: 1100px;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -109,7 +109,7 @@ ul li {
 .search {
   margin: 18px 0 0 0;
   display: flex;
-  min-width: 320px;
+  min-width: 300px;
   width: 100%;
   background-color: #212D4B;
   border: 1px solid #27304F;
@@ -155,8 +155,8 @@ ul li {
 .devices {
   margin: 20px 0 20px 0;
   display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit,minmax(140px,140px));
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit,minmax(150px,150px));
   justify-content: center;
 }
 .device {
@@ -165,6 +165,13 @@ ul li {
   box-shadow: -2px 5px 0 0 #141730;
 }
 .device__parameter {
+  /*  */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  min-height: 80px;
+  /*  */
   position: relative;
   margin: 3px 8px 4px 8px;
 }
@@ -202,8 +209,8 @@ ul li {
 .state_offline::after {
   content: '';
 	position: absolute;
-  width: 140px;
-  height: 71px;
+  width: 150px;
+  height: 86px;
   opacity: 0.8;
   top: -3px;
   left: -8px;
@@ -219,6 +226,7 @@ ul li {
 .device__img {
 }
 .wrapper {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   min-width: 84px;
@@ -233,7 +241,7 @@ ul li {
   overflow: hidden;
 }
 .device__fieldset {
-  display: inline-block;
+  /* display: inline-block; */
 }
 .device__input {
   height: 0;
