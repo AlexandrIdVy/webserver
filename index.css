@@ -62,11 +62,10 @@ ul li {
 .page {
   margin: 0 auto;
   max-width: 1100px;
-  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-image: linear-gradient(45deg, #0B142B, #1B1E40);
+  background-image: linear-gradient(45deg, #1B1E40, #0B142B);
   font-family: 'Inter', 'Arial', sans-serif;
   color: white;
   font-style: normal;
@@ -78,7 +77,6 @@ ul li {
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  background-color: #1B1E40;
   border-bottom: 1px solid #27304F;
 }
 .header__logo {
@@ -109,7 +107,7 @@ ul li {
 .search {
   margin: 18px 0 0 0;
   display: flex;
-  min-width: 300px;
+  min-width: 280px;
   width: 100%;
   background-color: #212D4B;
   border: 1px solid #27304F;
@@ -120,7 +118,7 @@ ul li {
   margin: 0 10px 0 0;
 }
 .search__input {
-  min-width: 245px;
+  width: 100%;
   border: 0;
   background-color: #212D4B;
   color: #A85C86;
@@ -153,68 +151,60 @@ ul li {
   overflow: auto;
 }
 .devices {
-  margin: 20px 0 20px 0;
+  margin: 20px 10px 20px 10px;
   display: grid;
   gap: 10px;
-  grid-template-columns: repeat(auto-fit,minmax(150px,150px));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-auto-flow: dense;
   justify-content: center;
 }
 .device {
-  background-color: #212D4B;
-  border-radius: 13px;
-  box-shadow: -2px 5px 0 0 #141730;
-}
-.device__parameter {
-  /*  */
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  min-height: 80px;
-  /*  */
-  position: relative;
-  margin: 3px 8px 4px 8px;
+  min-height: 100px;
+  border-radius: 13px;
+  box-shadow: -2px 5px 0 0 #141730;
+  padding: 6px;
+  background: linear-gradient(to bottom, #151D35 25%, #212D4B 75%);
 }
+
 .device__state {
-  position: relative;
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
-  padding: 6px 0 0 6px;
-  width: 100%;
-  height: 25px;
-  background-color: #151D35;
-  border-radius: 13px 13px 0 0;
 }
 .state_online::before {
   content: '';
 	position: absolute;
-	top: -24px;
-	right: -3px;
-	width: 18px;
-	height: 18px;
+	top: 6px;
+	right: 6px;
+	width: 15px;
+	height: 15px;
 	background-color: #54839E;
-	border-radius: 90px;
+	border-radius: 50%;
 }
 .state_offline::before {
   content: '';
 	position: absolute;
-	top: -24px;
-	right: -3px;
-	width: 18px;
-	height: 18px;
+	top: 6px;
+	right: 6px;
+	width: 15px;
+	height: 15px;
 	background-color: #E478ED;
-	border-radius: 90px;
+	border-radius: 50%;
 }
 .state_offline::after {
   content: '';
 	position: absolute;
-  width: 150px;
-  height: 86px;
+  width: 100%;
+  height: 75%;
   opacity: 0.8;
-  top: -3px;
-  left: -8px;
-  background: #212D4B;
+  top: 25px;
+  left: 0;
+  background: linear-gradient(to bottom, #151D35 25%, #212D4B 75%);
   border-radius: 0 0 13px 13px;
 }
 
@@ -224,13 +214,11 @@ ul li {
   line-height: 14px;
 }
 .device__img {
+  cursor: pointer;
+  border-radius: 13px;
+  transition: background-color .6s ease, box-shadow .6s ease;
 }
-.wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  min-width: 84px;
-}
+
 .device__name {
   display: inline-block;
   font-weight: 400;
@@ -241,7 +229,6 @@ ul li {
   overflow: hidden;
 }
 .device__fieldset {
-  /* display: inline-block; */
 }
 .device__input {
   height: 0;
@@ -249,46 +236,20 @@ ul li {
   visibility: hidden;
   display: none;
 }
-.device__span {
-  position: relative;
-  text-indent: -9999px;
-	width: 42px;
-	height: 20px;
-  background-color: #212D4B;
-	display: block;
-	border-radius: 13px;
-  border: 1px solid #151D35;
-  box-sizing: border-box;
-}
-.device__span::after {
-  content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 18px;
-	height: 18px;
-	background-color: #fff;
-	border-radius: 90px;
-	transition: 0.3s;
-}
-.device__input:checked + .device__span {
-  background-color: #54839E;
-}
-.device__input:checked + .device__span:after {
-	left: 100%;
-	transform: translateX(-100%);
+.device__input:checked + .device__img {
+  background-color: #55829F;
+  box-shadow: 0px 0px 10px 10px #55829F;
 }
 .device__value {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 25px;
+  right: 6px;
   font-weight: 400;
   font-size: 24px;
   line-height: 28px;
 }
 .footer {
   flex-shrink: 0;
-  background-color: #0B152B;
   border-top: 1px solid #27304F;
 }
 .navigation {
