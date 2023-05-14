@@ -25,30 +25,33 @@
   </header>
   <main class="main">
     <section class="devices">
-      <article class="device state_online" style="grid-column: span 2;">
+      <article class="device two-cell state_online">
         <h2 class="device__state">Online</h2>
         <h3 class="device__location">Зал</h3>
           <fieldset class="device__fieldset">
             <label>
               <input type="checkbox" id="switch" class="device__input_type_switch">
-              <img src="conditioner.png" alt="" class="device__img">
+              <img src="meteo.png" alt="" class="device__img">
             </label>
           </fieldset>
-          <h4 class="device__name">Кондиционер</h4>
-          <h5 class="device__value">23&deg;C</h5>
+          <h4 class="device__name">Метеостанция</h4>
+          <ul class="device__value">
+            <li>23&deg;C</li>
+            <li>1200 ppm</li>
+          </ul>
       </article>
-      <article class="device state_online" style="grid-column: span 1;">
+      <article class="device one-cell state_online">
         <h2 class="device__state">Online</h2>
         <h3 class="device__location">Зал</h3>
           <fieldset class="device__fieldset">
             <label>
               <input type="checkbox" id="switch" class="device__input_type_switch">
-              <img src="conditioner.png" alt="" class="device__img">
+              <img src="tv.png" alt="" class="device__img">
             </label>
           </fieldset>
-          <h4 class="device__name">Кондиционер</h4>
+          <h4 class="device__name">Телевизор</h4>
       </article>
-      <article class="device state_online" style="grid-column: span 3;">
+      <article class="device three-cell state_online">
         <h2 class="device__state">Online</h2>
         <h3 class="device__location">Зал</h3>
           <fieldset class="device__fieldset">
@@ -58,42 +61,56 @@
             </label>
           </fieldset>
           <h4 class="device__name">Кондиционер</h4>
-          <h5 class="device__value">23&deg;C</h5>
+          <fieldset class="device__control">
+            <label>
+              <input type="range" value="70" min="18" max="27" oninput="rangevalue.value=value"/>
+              <output id="rangevalue">25</output>&deg;C
+            </label>
+          </fieldset>
       </article>
-      <article class="device state_online" style="grid-column: span 2;">
+      <article class="device two-cell state_online">
         <h2 class="device__state">Online</h2>
-        <h3 class="device__location">Зал</h3>
+        <h3 class="device__location">Коридор</h3>
           <fieldset class="device__fieldset">
             <label>
               <input type="checkbox" id="switch" class="device__input_type_switch">
-              <img src="conditioner.png" alt="" class="device__img">
+              <img src="door.png" alt="" class="device__img">
             </label>
           </fieldset>
-          <h4 class="device__name">Кондиционер</h4>
-          <h5 class="device__value">23&deg;C</h5>
+          <h4 class="device__name">Дверь</h4>
+          <ul class="device__value">
+            <li><img src="lock-open.png" alt=""></li>
+            <li><img src="lock-close.png" alt=""></li>
+            <li><img src="lock-open.png" alt=""></li>
+          </ul>
       </article>
-      <article class="device state_online" style="grid-column: span 1;">
+      <article class="device one-cell state_online">
         <h2 class="device__state">Online</h2>
         <h3 class="device__location">Зал</h3>
           <fieldset class="device__fieldset">
             <label>
               <input type="checkbox" id="switch" class="device__input_type_switch">
-              <img src="conditioner.png" alt="" class="device__img">
+              <img src="sound.png" alt="" class="device__img">
             </label>
           </fieldset>
-          <h4 class="device__name">Кондиционер</h4>
+          <h4 class="device__name">Колонки</h4>
       </article>
-      <article class="device state_online" style="grid-column: span 3;">
+      <article class="device three-cell state_online">
         <h2 class="device__state">Online</h2>
         <h3 class="device__location">Зал</h3>
           <fieldset class="device__fieldset">
             <label>
               <input type="checkbox" id="switch" class="device__input_type_switch">
-              <img src="conditioner.png" alt="" class="device__img">
+              <img src="heater.png" alt="" class="device__img">
             </label>
           </fieldset>
-          <h4 class="device__name">Кондиционер</h4>
-          <h5 class="device__value">23&deg;C</h5>
+          <h4 class="device__name">Обогреватель</h4>
+          <fieldset class="device__control">
+            <label>
+              <input type="range" value="70" min="18" max="27" oninput="rangevalue.value=value"/>
+              <output id="rangevalue">25</output>&deg;C
+            </label>
+          </fieldset>
       </article>
     </section>
   </main>

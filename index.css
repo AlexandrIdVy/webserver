@@ -232,13 +232,18 @@ ul li {
   line-height: 14px;
 }
 .device__img {
+  -khtml-user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
   cursor: pointer;
   border-radius: 13px;
   transition: background-color .6s ease, box-shadow .6s ease;
 }
 
 .device__name {
-  display: inline-block;
+  width: calc(100% - 6px);
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -259,13 +264,20 @@ ul li {
   background-color: #55829F;
   box-shadow: 0px 0px 10px 10px #55829F;
 }
-.device__value {
+.device__value, .device__control {
   position: absolute;
   top: 25px;
   right: 6px;
   font-weight: 400;
-  font-size: 24px;
-  line-height: 28px;
+  font-size: 22px;
+  line-height: 24px;
+  text-align: right;
+}
+.device__value > li {
+  margin: 0 0 2px 0;
+}
+.device__control {
+  top: 50px;
 }
 .footer {
   flex-shrink: 0;
@@ -295,3 +307,15 @@ ul li {
   opacity: 1;
 }
 
+.one-cell {
+  grid-column: span 1;
+  min-width: 90px;
+}
+.two-cell {
+  grid-column: span 2;
+  min-width: 190px;
+}
+.three-cell {
+  grid-column: span 3;
+  min-width: 290px;
+}
