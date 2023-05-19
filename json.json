@@ -1,0 +1,18 @@
+[ {
+  "id": 1,
+  "type": "switch",
+  "state": true,
+  "location": "зал",
+  "on": true,
+  "image": "tv",
+  "name": "телевизор"
+  } ,
+  {
+  "id": 2,
+  "type": "switch",
+  "state": true,
+  "location": "зал",
+  "on": true,
+  "image": "sound",
+  "name": "колонки"
+  } ]
