@@ -24,11 +24,23 @@ void checkState1(bool val){
   
  if (val) {
     LEDonoff1 = true;    
-    docSend["LEDone"]["State"] = true;    
+    docSend[0]["id"] = 1;
+    docSend[0]["type"] = "switch";
+    docSend[0]["state"] = true;
+    docSend[0]["location"] = "зал";
+    docSend[0]["on"] = true;
+    docSend[0]["image"] = "tv";
+    docSend[0]["name"] = "телевизор";    
   }
   else {
     LEDonoff1 = false;    
-    docSend["LEDone"]["State"] = false;
+    docSend[0]["id"] = 1;
+    docSend[0]["type"] = "switch";
+    docSend[0]["state"] = true;
+    docSend[0]["location"] = "зал";
+    docSend[0]["on"] = false;
+    docSend[0]["image"] = "tv";
+    docSend[0]["name"] = "телевизор"; 
  }   
   
 }
@@ -39,11 +51,23 @@ void checkState2(bool val){
   
  if (val) {
     LEDonoff2 = true;    
-    docSend["LEDtwo"]["State"] = true;    
+    docSend[1]["id"] = 2;
+    docSend[1]["type"] = "switch";
+    docSend[1]["state"] = true;
+    docSend[1]["location"] = "зал";
+    docSend[1]["on"] = true;
+    docSend[1]["image"] = "sound";
+    docSend[1]["name"] = "колонки";    
   }
   else {
     LEDonoff2 = false;    
-    docSend["LEDtwo"]["State"] = false;
+    docSend[1]["id"] = 2;
+    docSend[1]["type"] = "switch";
+    docSend[1]["state"] = true;
+    docSend[1]["location"] = "зал";
+    docSend[1]["on"] = true;
+    docSend[1]["image"] = "sound";
+    docSend[1]["name"] = "колонки"; 
  }   
   
 }

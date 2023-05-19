@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="/index.css">
     <title>My flat</title>
 </head>
 <body class="page">
@@ -20,12 +20,12 @@
     </ul>
     <nav class="search">
       <img src="search.png" alt="" class="search__img">
-      <input type="text" class="search__input" placeholder="Поиск устройства">
+      <input type="text" name="search" class="search__input" placeholder="Поиск устройства">
     </nav>
   </header>
   <main class="main">
     <section class="devices">
-      <article class="device two-cell state_online">
+      <!-- <article class="device two-cell state_online">
         <h2 class="device__state">Online</h2>
         <h3 class="device__location">Зал</h3>
           <fieldset class="device__fieldset">
@@ -111,7 +111,7 @@
               <output id="rangevalue">25</output>&deg;C
             </label>
           </fieldset>
-      </article>
+      </article> -->
     </section>
   </main>
   <footer class="footer">
@@ -136,5 +136,19 @@
       </ul>
     </nav>
   </footer>
+  <template id="device-template">
+    <article class="device">
+      <h2 class="device__state"></h2>
+      <h3 class="device__location"></h3>
+        <fieldset class="device__fieldset">
+          <label>
+            <input type="checkbox" id="" class="device__input_type_switch" disabled>
+            <img src="" alt="" class="device__img">
+          </label>
+        </fieldset>
+        <h4 class="device__name"></h4>
+    </article>
+  </template>
+  <script type="module" src="index.js"></script>
 </body>
 </html>

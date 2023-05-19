@@ -10,14 +10,26 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length
       } else {  
        DeviceNumber = docGet["Devnum"];                                                // Записываем номера устройства из JSON       
       switch (DeviceNumber) {                                                         // Проверяем номер устройства
-        case 1: {                    
+        case 1: {                                                                     // Отправляем общий JSON
+          JSONtxt="";                                                                 // Очищаем переменную JSONtxt от предыдущих значений
+          serializeJson(docSend, JSONtxt);                                             // Записываем JSON объект в переменную JSONtxt
+          webSocket.broadcastTXT(JSONtxt);                                                // Передаем значение переменной JSONtxt в index.html      
+          }
+        break;
+        case 2: {                                                                     // Отправляем состояния устройств
+          JSONtxt="";                                                                 // Очищаем переменную JSONtxt от предыдущих значений
+          serializeJson(docSend, JSONtxt);                                             // Записываем JSON объект в переменную JSONtxt
+          webSocket.broadcastTXT(JSONtxt);                                                // Передаем значение переменной JSONtxt в index.html
+          }
+        break;
+        case 3: {                    
           bool LED1 = docGet["LEDone"]["State"];                                     // Обновляем состояние светодиода 1
           checkState1(LED1);          
           digitalWrite(LED_1, LEDonoff1);
           client.publish(relay_topic_state.c_str(), String(LEDonoff1).c_str(), LEDonoff1);
           }
         break;             
-        case 2: {                                                                     // Обновляем состояние светодиода 2
+        case 4: {                                                                     // Обновляем состояние светодиода 2
           bool LED2 = docGet["LEDtwo"]["State"];
           checkState2(LED2);          
           digitalWrite(LED_2, LEDonoff2);
@@ -28,9 +40,8 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length
         break;
       }          
      }    
-           JSONtxt="";                                                                 // Очищаем переменную JSONtxt от предыдущих значений
-          serializeJson(docSend, JSONtxt);                                             // Записываем JSON объект в переменную JSONtxt
-      webSocket.broadcastTXT(JSONtxt);                                                // Передаем значение переменной JSONtxt в index.html               
+           
+                     
     }
     break;
     default:

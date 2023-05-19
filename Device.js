@@ -1,4 +1,4 @@
-//класс для добавления карточек на страницу
+//класс для добавления виджетов устройств
 export default class Device {
   constructor(deviceSelector, device) {
     this._id = device.id;

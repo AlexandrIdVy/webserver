@@ -32,7 +32,7 @@ void reconnect() {
          
     if (client.connect(clientId.c_str(), mqtt_user, mqtt_password)) {
       Serial.println("connected");
-      docSend["Blynk"] = true;    
+      //docSend["Blynk"] = true;    
       
       client.publish(relay_topic_state.c_str(), String(LEDonoff1).c_str(), LEDonoff1);
       client.publish(relay_topic.c_str(), String(LEDonoff1).c_str(), LEDonoff1);              
@@ -46,7 +46,7 @@ void reconnect() {
       Serial.print("failed, rc=");
       Serial.print(client.state());
       Serial.println(" try again in 5 seconds");
-      docSend["Blynk"] = false;
+      //docSend["Blynk"] = false;
       delay(5000);
     }  
    }

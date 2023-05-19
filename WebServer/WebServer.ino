@@ -1,8 +1,8 @@
 #include <ESP8266WiFi.h>                                                  // Библиотека для создания Wi-Fi подключения (клиент или точка доступа)
 #include <WebSocketsServer.h>                                             // Библиотека для создания WebSocketsServer'а
 #include <ESP8266WebServer.h>                                             // Библиотека для управления устройством по HTTP (например из браузера)
-#include <FS.h>                                                           // Библиотека для работы с файловой системой
-#include <ESP8266FtpServer.h>                                             // Библиотека для работы с SPIFFS по FTP
+#include <LittleFS.h>                                                     // Библиотека для работы с файловой системой
+#include <SimpleFTPServer.h>                                             // Библиотека для работы с LittleFS по FTP
 #include <DHT.h>                                                          // Библиотека для работы с датчиком температуры и влажности "DHT"
 #include <ArduinoJson.h>                                                  // Библиотека для чтения и создания JSON запросов
 #include <PubSubClient.h>
@@ -33,7 +33,7 @@ const int mqtt_port = ;
 const char* mqtt_user = "";
 const char* mqtt_password = "";
 
-// Топики
+// RELAY and SENSOR
 const String relay_topic = "/sound";
 const String relay_topic_state = "/sound/state";
 const String relay2_topic = "/tv";
@@ -50,7 +50,7 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 
 DynamicJsonDocument docGet(200);                                        // Выделяем память для полученного Json
-DynamicJsonDocument docSend(200);                                       // Выделяем память для отправленного Json
+DynamicJsonDocument docSend(400);                                       // Выделяем память для отправленного Json
 
 void setup() {
   Serial.begin(9600);                                   // Инициализируем вывод данных на серийный порт со скоростью 9600 бод
@@ -66,10 +66,16 @@ void setup() {
   //Serial.println(WiFi.macAddress());                  // Выводим mac фадрес
   checkState1(digitalRead(LED_1));                      // Проверяем состояние пина светодиода 
   checkState2(digitalRead(LED_2));                      // Проверяем состояние пина светодиода
-  SPIFFS.begin();                             // Инициализируем работу с файловой системой  
+  LittleFS.begin();                             // Инициализируем работу с файловой системой  
   server.on("/", handleHTML);                 // Подключаем главную страницу вебсервера index.html
-  server.on("/css.css", handleCSS);           // Подключаем стили css.css
-  server.on("/script.js", handleJS);          // Подключаем стили script.js 
+  server.on("/index.css", handleCSS);           // Подключаем стили css.css
+  server.on("/index.js", handleJS);          // Подключаем стили script.js
+  server.on("/constants.js", handleConstantsJS);          // Подключаем стили script.js
+  server.on("/Section.js", handleSectionJS);          // Подключаем стили script.js
+  server.on("/Device.js", handleDeviceJS);          // Подключаем стили script.js
+  server.on("/Request.js", handleRequestJS);          // Подключаем стили script.js    
+  server.on("/sound.png", handleSoundPNG);          // Подключаем стили script.js
+  server.on("/tv.png", handleTvPNG);          // Подключаем стили script.js  
   server.begin();                             // Инициализируем Web-сервер
   webSocket.begin();                          // Инициализируем WebSocketsServer
   webSocket.onEvent(webSocketEvent);          // Возвращаем события, когда они происходят
@@ -87,6 +93,6 @@ void loop() {
                                     
   server.handleClient();                      // Обработчик HTTP-событий (отлавливает HTTP-запросы к устройству и обрабатывает их в соответствии с выше описанным алгоритмом)
   ftpSrv.handleFTP();                         // Обработчик FTP-соединений
-  getMeteo();                                 // Запускаем опрос DHT
+  //getMeteo();                                 // Запускаем опрос DHT
   webSocket.loop();                           // Запускаем WebSocketsServer 
 }
