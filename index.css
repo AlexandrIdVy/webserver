@@ -91,24 +91,6 @@ ul li {
   font-size: 12px;
   line-height: 14px;
 }
-.header__connects-list-item:first-child::before {
-  content: '';
-	position: absolute;
-	top: 2px;
-  left: -9px;
-  background-image: url(cloud.png);
-  width: 16px;
-  height: 16px;
-}
-.header__connects-list-item:last-child::before {
-  content: '';
-	position: absolute;
-	top: 15px;
-  left: -9px;
-  background-image: url(devices.png);
-  width: 16px;
-  height: 16px;
-}
 .header__connects-list-item span {
   text-transform: uppercase;
 }

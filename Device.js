@@ -1,6 +1,6 @@
 //класс для добавления виджетов устройств
 export default class Device {
-  constructor(deviceSelector, device) {
+  constructor(deviceSelector, device, wsConnect) {
     this._id = device.id;
     this._type = device.type;
     this._state = device.state;
@@ -9,6 +9,7 @@ export default class Device {
     this._image = device.image;
     this._name = device.name;
     this._deviceSelector = deviceSelector;
+    this._wsConnect = wsConnect;
   }
 
   // получаем шаблон виджета устройства
@@ -54,7 +55,15 @@ export default class Device {
 
   // отправляем json на сервер
   _sendJsonState(checked) {
-// отправить json на сервер
+    if (checked) {
+      this._wsConnect.sendMessage(this._id, checked);
+      console.log('on');
+    }
+    else {
+      this._wsConnect.sendMessage(this._id, checked);
+      console.log('off');
+    }
+
   }
 
   // меняем состояние выключателя от внешнего управления

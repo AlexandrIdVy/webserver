@@ -3,27 +3,27 @@ import Section from './Section.js';
 import Device from './Device.js';
 import Request from './Request.js';
 
-
 // создаем экземпляр класса для добавления устройств в указанную секцию
 const devicesList = new Section({
-  renderer: (item) => {
-    devicesList.addItem(createDevice(item));
-  },
+  renderer: item => devicesList.addItem(createDevice(item))
 }, devices);
 
-// создаем экземпляр класса для подключения websocket
-const wsConnect = new Request(url);
 
-wsConnect.connect()
+// создаем экземпляр класса для подключения websocket
+const request = new Request(url);
+
+request.connect()
   .then(resolve => {
+    resolve.send(JSON.stringify({ id: 1 }));
     resolve.onmessage = (evt) => devicesList.render(JSON.parse(evt.data));
-    resolve.send(JSON.stringify({ Devnum: 1 }))})
+    request.startInterval();
+  })
   .catch(err => console.log(err));
 
 
 // создаем виджет устройства
 function createDevice(device) {
-  const widget = new Device('#device-template', device);
+  const widget = new Device('#device-template', device, request);
 
   return widget.generateDevice();
 }

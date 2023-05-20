@@ -1,3 +1,4 @@
+// класс отправки запросов на сервер
 export default class Request {
   constructor(url) {
     this._url = url;
@@ -11,8 +12,6 @@ export default class Request {
 
         this._socket.onopen = () => {
           console.log('Соединение установлено');
-          document.addEventListener('visibilitychange', this._checkDocumnetVisibility);
-          this._startInterval();
           resolve(this._socket);
         }
 
@@ -24,25 +23,35 @@ export default class Request {
     });
   }
 
+  sendMessage(id, state) {
+    let req = {
+      id: id,
+      on: state
+    };
+
+    this._socket.send(JSON.stringify(req));
+  }
+
 
   // пуск/останов запросов на сервер при открытии/сворачивания вкладки или окна браузера
  _checkDocumnetVisibility = () => {
         setTimeout(() => {
       if (document.hidden) {
         this._stopInterval();
-        //clearInterval(this._startTimer);
       }
       else {
-        this._startInterval();
+        this.startInterval();
       }
     }, 250);
     }
 
   // отпраляем запросы на сервер
-  _startInterval() {
+  startInterval() {
+    document.addEventListener('visibilitychange', this._checkDocumnetVisibility);
+
     this._startTimer = setInterval(() => {
       if (this._socket.readyState === 1) {
-        this._socket.send(JSON.stringify({ Devnum: 0 }));
+        this.sendMessage(0);
         console.log('Отправка данных');
       }
       else {
