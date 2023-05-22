@@ -33,12 +33,7 @@ export default class Device {
 
   // устанавливаем текущее состояние выключателя
   _addStateSwitch() {
-    if (this._on) {
-      this._switch.checked = true;
-    }
-    else {
-      this._switch.checked = false;
-    }
+    this._switch.checked = this._on;
   }
 
   // устанавливаем состояние устройства
@@ -64,13 +59,6 @@ export default class Device {
       console.log('off');
     }
 
-  }
-
-  // меняем состояние выключателя от внешнего управления
-  changeStateSwitch(deviceID) {
-    if (deviceID === this._id) {
-      this._handleSwitchClick();
-    }
   }
 
   // создаем виджет устроства

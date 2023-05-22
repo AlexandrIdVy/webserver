@@ -33,7 +33,7 @@ export default class Request {
   }
 
 
-  // пуск/останов запросов на сервер при открытии/сворачивания вкладки или окна браузера
+ /*  // пуск/останов запросов на сервер при открытии/сворачивания вкладки или окна браузера
  _checkDocumnetVisibility = () => {
         setTimeout(() => {
       if (document.hidden) {
@@ -65,5 +65,5 @@ export default class Request {
 
   _stopInterval() {
     clearInterval(this._startTimer);
-  }
+  } */
 }

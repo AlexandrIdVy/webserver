@@ -2,21 +2,28 @@ import { devices, url } from './constants.js';
 import Section from './Section.js';
 import Device from './Device.js';
 import Request from './Request.js';
+import DeviceUpdate from './DeviceUpdate.js';
 
 // создаем экземпляр класса для добавления устройств в указанную секцию
 const devicesList = new Section({
   renderer: item => devicesList.addItem(createDevice(item))
 }, devices);
 
+const devicesUpdate = new Section({
+  renderer: item => updateDevice(item)
+}, devices);
 
 // создаем экземпляр класса для подключения websocket
 const request = new Request(url);
 
 request.connect()
   .then(resolve => {
-    resolve.send(JSON.stringify({ id: 1 }));
-    resolve.onmessage = (evt) => devicesList.render(JSON.parse(evt.data));
-    request.startInterval();
+    resolve.send(JSON.stringify({ id: 0 }));
+    resolve.onmessage = (evt) => {
+      devicesList.render(JSON.parse(evt.data));
+      devicesUpdate.update(JSON.parse(evt.data));
+    }
+    //request.startInterval();
   })
   .catch(err => console.log(err));
 
@@ -28,6 +35,11 @@ function createDevice(device) {
   return widget.generateDevice();
 }
 
+function updateDevice(device) {
+  const widget = new DeviceUpdate(device);
+
+  return widget.update();
+}
 
 
 // Функция для парсинга данных
